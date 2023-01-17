@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.chatbot.controllers.MainController">
+    <top>
+        <HBox alignment="CENTER" prefHeight="68.0" prefWidth="598.0" styleClass="header" stylesheets="@../styles/main.css" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER">
+                <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                </padding>
+                <Label graphicTextGap="20.0" styleClass="title" stylesheets="@../styles/main.css" text="ChaTTY">
+                    <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../assets/logo.png" />
+                        </ImageView>
+                    </graphic>
+                </Label>
+                <Label text="School Chat Bot">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+            </VBox>
+        </HBox>
+    </top>
+    <bottom>
+        <HBox alignment="CENTER" styleClass="bottom" stylesheets="@../styles/main.css" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <TextField fx:id="messageField" onAction="#onEnter" onKeyPressed="#onType" promptText="Any Questions?" styleClass="message-input" stylesheets="@../styles/main.css" HBox.hgrow="ALWAYS">
+                <HBox.margin>
+                    <Insets />
+                </HBox.margin>
+            </TextField>
+            <Button fx:id="sendButton" alignment="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#onEnter" styleClass="send-button" stylesheets="@../styles/main.css">
+                <graphic>
+                    <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../assets/send.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+    </bottom>
+    <center>
+        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="messagesContainer" alignment="BOTTOM_CENTER" styleClass="content" stylesheets="@../styles/main.css" />
+        </ScrollPane>
+    </center>
+</BorderPane>

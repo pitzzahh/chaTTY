@@ -1,0 +1,48 @@
+.content {
+    -fx-background-color: #4B4B4B;
+}
+
+.title {
+    -fx-text-fill: #131212;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.header {
+    -fx-background-color: #E0FBFC;
+}
+
+.bottom {
+    -fx-background-color: #5fadaf;
+}
+
+.send-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+}
+
+.send-button:hover {
+    -fx-background-color: #fff;
+    -fx-text-fill: #5fadaf;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.message-input {
+    -fx-font-size: 20px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.bot-message-container {
+    -fx-background-color: #363535;
+    -fx-background-radius: 10px;
+    -fx-border-color: #000;
+    -fx-border-radius: 10px;
+}
+
+.message {
+    -fx-text-fill: #fff;
+    -fx-font-size: 18px;
+}
