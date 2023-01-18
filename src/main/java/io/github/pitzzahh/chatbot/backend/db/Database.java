@@ -35,7 +35,7 @@ public class Database {
     private static final String APP_DATA_DIR = System.getenv("LOCALAPPDATA") + "\\Programs";
     private static final File DIR = new File(APP_DATA_DIR, "ChaTTY");
 
-    public static void createDatabaseFile() throws IOException {
+    public static void createResponsesFile() throws IOException {
         String appDataPath = System.getenv("LOCALAPPDATA") + "\\Programs";
 
         File dir = new File(appDataPath, "ChaTTY");
