@@ -1,5 +1,7 @@
 package io.github.pitzzahh.chatbot.application;
 
+import static io.github.pitzzahh.chatbot.backend.db.Database.createResponsesFile;
+import static io.github.pitzzahh.chatbot.backend.db.Database.doesNotExist;
 import static io.github.pitzzahh.chatbot.util.WindowUtil.*;
 import static java.util.Objects.requireNonNull;
 import io.github.pitzzahh.chatbot.Launcher;
@@ -51,7 +53,8 @@ public class ChatBot extends Application {
         ));
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        if (doesNotExist()) createResponsesFile();
         launch(args);
     }
 }
