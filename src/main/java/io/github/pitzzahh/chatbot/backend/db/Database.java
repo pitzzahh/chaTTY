@@ -24,8 +24,12 @@
 
 package io.github.pitzzahh.chatbot.backend.db;
 
-import java.io.File;
+import io.github.pitzzahh.util.utilities.FileUtil;
+import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.io.File;
 
 /**
  * class used by services to gain access to the database.
@@ -39,10 +43,24 @@ public class Database {
         String appDataPath = System.getenv("LOCALAPPDATA") + "\\Programs";
 
         File dir = new File(appDataPath, "ChaTTY");
-        if (!dir.exists()) {
-            System.out.println("Create folder ChaTTY = " + dir.mkdir());
-        }
-        System.out.println("Create Database: " + new File(dir, "data.db").createNewFile());
+        if (!dir.exists()) System.out.println("Create folder ChaTTY = " + dir.mkdir());
+
+        final Map<String, String> MAP = new HashMap<>();
+        MAP.put("hello", "Hello! How can I help you today?");
+        MAP.put("hi", "Hello! How can I help you today?");
+        MAP.put("hours", "Our school is open Monday through Friday, from 8am to 3pm.");
+        MAP.put("location", "Our school is located at 123 Main St.");
+        MAP.put("enrollment", "For information on enrollment, please visit our website or call 555-1234.");
+        MAP.put("schedule", "Classes start at 8:30am and end at 3:00pm. You can find a detailed schedule on our website.");
+        MAP.put("counseling", "For counseling services, please contact the counseling office at 555-5678.");
+        MAP.put("teachers", "To contact a teacher, please visit our website and find the directory of teachers.");
+        MAP.put("events", "Upcoming events can be found on our calendar on the school website.");
+        MAP.put("bye", "Thank you for contacting us. Have a great day!");
+        MAP.put("love", "I Love you too. However a Bot like me can't love a human!");
+        Gson gson = new Gson();
+        String json = gson.toJson(MAP);
+        FileUtil.writeToATextFile(json, new File(dir, "responses.json"), true);
+        System.out.println("Create Database: " + (!doesNotExist()));
     }
 
     public static File getResponsesFile() {
@@ -52,7 +70,7 @@ public class Database {
     }
 
     public static boolean doesNotExist() {
-        return !new File(DIR, "data.db").exists();
+        return !new File(DIR, "responses.json").exists();
     }
 
 }
