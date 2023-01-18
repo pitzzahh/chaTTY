@@ -24,14 +24,13 @@
 
 package io.github.pitzzahh.chatbot.util;
 
+import static io.github.pitzzahh.chatbot.backend.db.Database.getResponsesFile;
 import com.google.gson.reflect.TypeToken;
-import io.github.pitzzahh.chatbot.Launcher;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.Map;
-
-import static java.util.Objects.requireNonNull;
 
 public interface Utility {
 
@@ -39,8 +38,8 @@ public interface Utility {
      * Gets the jokes from a local JSON file
      * @return a map of chat responses
      */
-    static Map<String, String> readJson(String fileName) {
-        try (InputStreamReader reader = new InputStreamReader(requireNonNull(Launcher.class.getResourceAsStream(fileName), "Cannot find file " + fileName))) {
+    static Map<String, String> readJson() {
+        try (InputStreamReader reader = new InputStreamReader(new FileInputStream(getResponsesFile()))) {
             return new Gson().fromJson(reader, new TypeToken<Map<String, String>>(){}.getType());
         } catch (IOException e) {
             e.printStackTrace();
