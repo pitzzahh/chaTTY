@@ -24,9 +24,9 @@
 
 package io.github.pitzzahh.chatbot.backend.db;
 
-import io.github.pitzzahh.util.utilities.FileUtil;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.File;
@@ -59,7 +59,7 @@ public class Database {
         MAP.put("love", "I Love you too. However a Bot like me can't love a human!");
         Gson gson = new Gson();
         String json = gson.toJson(MAP);
-        FileUtil.writeToATextFile(json, new File(dir, "responses.json"), true);
+        Files.writeString(new File(dir, "responses.json").toPath(), json);
         System.out.println("Create Database: " + (!doesNotExist()));
     }
 
