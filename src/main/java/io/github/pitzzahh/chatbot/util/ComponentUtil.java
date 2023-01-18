@@ -43,9 +43,7 @@ public interface ComponentUtil {
             UserCardController userCardController = fxmlLoader.getController();
             userCardController.setData(message);
             messageContainer.getChildren().add(messageCard);
-            scrollPane.layout();
-            scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-            scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            scrollPane.vvalueProperty().bind(messageContainer.heightProperty());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,10 +58,7 @@ public interface ComponentUtil {
             doctorCardController.setData(message, isStart);
             messageContainer.getChildren().add(messageCard);
             scrollPane.layout();
-            scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-            scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-            scrollPane.setVvalue(1.0);
-
+            scrollPane.vvalueProperty().bind(messageContainer.heightProperty());
         } catch (Exception e) {
             e.printStackTrace();
         }
