@@ -11,7 +11,7 @@ public class BotCardController {
     public Label message;
 
     public void setData(String userMessage, boolean isStart) {
-        Map<String, String> responses = Utility.readJson("responses.json");
+        Map<String, String> responses = Utility.readJson();
         if (isStart) message.setText(responses.get("hello"));
         else {
             responses.entrySet()
