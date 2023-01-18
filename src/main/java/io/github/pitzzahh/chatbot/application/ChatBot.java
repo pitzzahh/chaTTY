@@ -5,14 +5,12 @@ import static java.util.Objects.requireNonNull;
 import io.github.pitzzahh.chatbot.Launcher;
 import static javafx.fxml.FXMLLoader.load;
 import javafx.application.Application;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.image.Image;
+import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import java.io.IOException;
-
-import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
 import java.util.Map;
 
 public class ChatBot extends Application {

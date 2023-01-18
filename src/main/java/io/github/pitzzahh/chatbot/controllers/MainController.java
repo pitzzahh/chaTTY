@@ -1,19 +1,19 @@
 package io.github.pitzzahh.chatbot.controllers;
 
+import static io.github.pitzzahh.chatbot.util.ComponentUtil.initUserMessageCard;
+import static io.github.pitzzahh.chatbot.util.ComponentUtil.initBotMessageCard;
 import static io.github.pitzzahh.chatbot.util.ToolTipUtil.initToolTip;
 import io.github.pitzzahh.chatbot.util.Style;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
-import java.util.ResourceBundle;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXML;
-import java.net.URL;
 
-public class MainController implements Initializable {
+public class MainController {
 
     @FXML
     public VBox messagesContainer;
@@ -24,37 +24,37 @@ public class MainController implements Initializable {
     @FXML
     public Button sendButton;
 
-    public static VBox messageContainerCopy;
+    @FXML
+    public ScrollPane scrollPane;
 
     @FXML
-    public void initialize(URL location, ResourceBundle resources) {
-        messageContainerCopy = messagesContainer;
+    public void initialize() {
         sendButton.setTooltip(initToolTip("Click to send message", Style.normalToolTipStyle()));
+        initBotMessageCard(messagesContainer, scrollPane, messageField.getText().trim(), true);
+        scrollPane.setStyle("-fx-background-color: transparent;");
     }
 
     @FXML
     public void onEnter(ActionEvent actionEvent) {
         actionEvent.consume();
-        if (messageField.getText().trim().isEmpty()) {
+        final String RAW_MESSAGE = messageField.getText().trim();
+        if (RAW_MESSAGE.isEmpty()) {
             sendButton.setDisable(true);
             messageField.setStyle(Style.errorInputStyle());
         }
         else {
-            messageField.setStyle(Style.normalInputStyle());
-            sendButton.setDisable(false);
+            initUserMessageCard(messagesContainer, scrollPane, RAW_MESSAGE);
+            initBotMessageCard(messagesContainer, scrollPane, RAW_MESSAGE, false);
+            messageField.clear();
         }
-        System.out.println("Entered");
     }
 
     @FXML
     public void onType(KeyEvent keyEvent) {
         if (keyEvent.getCode() != KeyCode.ENTER) {
             messageField.setStyle(Style.normalInputStyle());
-            sendButton.setDisable(true);
-        } else sendButton.setDisable(false);
+            sendButton.setDisable(false);
+        }
     }
 
-    public static VBox getCardStorage() {
-        return messageContainerCopy;
-    }
 }

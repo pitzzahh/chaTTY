@@ -4,9 +4,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="600.0" styleClass="bot-message-container" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="600.0" styleClass="bot-message-container" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.pitzzahh.chatbot.controllers.UserCardController">
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
     </padding>
-    <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="message" stylesheets="@../styles/main.css" text="Label" textAlignment="RIGHT" HBox.hgrow="ALWAYS" />
+    <Label fx:id="message" alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="message" stylesheets="@../styles/main.css" text="DEFAULT MESSAGE" textAlignment="RIGHT" wrapText="true" HBox.hgrow="ALWAYS" />
 </HBox>

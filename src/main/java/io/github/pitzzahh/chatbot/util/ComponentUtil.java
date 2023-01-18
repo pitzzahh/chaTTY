@@ -24,26 +24,50 @@
 
 package io.github.pitzzahh.chatbot.util;
 
-import static java.lang.String.format;
-import javafx.scene.control.*;
-import javafx.scene.Parent;
-import javafx.scene.layout.HBox;
+import io.github.pitzzahh.chatbot.controllers.UserCardController;
+import io.github.pitzzahh.chatbot.controllers.BotCardController;
+import static java.util.Objects.requireNonNull;
+import io.github.pitzzahh.chatbot.Launcher;
 import javafx.scene.layout.VBox;
-
-import java.util.Optional;
+import javafx.scene.layout.HBox;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
 
 public interface ComponentUtil {
 
-    static Optional<Label> getLabel(Parent parent, String id) {
-        return Optional.ofNullable((Label) parent.lookup(format("#%s", id)));
+    static void initUserMessageCard(VBox messageContainer, ScrollPane scrollPane, String message) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(requireNonNull(Launcher.class.getResource("fxml/userCard.fxml"), "Cannot find userCard.fxml"));
+            HBox messageCard = fxmlLoader.load();
+            UserCardController userCardController = fxmlLoader.getController();
+            userCardController.setData(message);
+            messageContainer.getChildren().add(messageCard);
+            scrollPane.layout();
+            scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    static Optional<HBox> getHBox(Parent parent, String id) {
-        return Optional.ofNullable((HBox) parent.lookup(format("#%s", id)));
+    static void initBotMessageCard(VBox messageContainer, ScrollPane scrollPane, String message, boolean isStart) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(requireNonNull(Launcher.class.getResource("fxml/botCard.fxml"), "Cannot find botCard.fxml"));
+            HBox messageCard = fxmlLoader.load();
+            BotCardController doctorCardController = fxmlLoader.getController();
+            doctorCardController.setData(message, isStart);
+            messageContainer.getChildren().add(messageCard);
+            scrollPane.layout();
+            scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            scrollPane.setVvalue(1.0);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    static Optional<VBox> getVBox(Parent parent, String id) {
-        return Optional.ofNullable((VBox) parent.lookup(format("#%s", id)));
-    }
 }
 

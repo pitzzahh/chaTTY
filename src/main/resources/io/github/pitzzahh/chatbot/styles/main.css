@@ -3,13 +3,14 @@
 }
 
 .title {
-    -fx-text-fill: #131212;
+    -fx-text-fill: #fff;
     -fx-font-size: 25px;
     -fx-font-weight: bold;
 }
 
 .header {
-    -fx-background-color: #E0FBFC;
+    -fx-background-color: #3D5A80;
+    -fx-background-radius: 0 0 50px 50px;
 }
 
 .bottom {
